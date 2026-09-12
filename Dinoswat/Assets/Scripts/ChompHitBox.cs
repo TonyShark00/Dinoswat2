@@ -7,6 +7,7 @@ public class ChompHitbox : MonoBehaviour
         if (other.CompareTag("Enemy"))
         {
             Destroy(other.transform.root.gameObject);
+            GameManager.Instance.AddKill();
         }
     }
 }

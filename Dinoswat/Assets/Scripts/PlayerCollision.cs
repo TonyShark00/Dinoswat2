@@ -1,12 +1,14 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
-public class PlayerCollision : MonoBehaviour{
-    private void OnCollisionEnter2D(Collision2D other){
+public class PlayerCollision : MonoBehaviour
+{
+    private void OnCollisionEnter2D(Collision2D other)
+    {
+        Debug.Log("hit: " + other.gameObject.name + " tag: " + other.gameObject.tag);
 
-        if(other.transform.tag=="Obstacle" || other.transform.tag=="Enemy"){
-            Destroy(gameObject);
+        if (other.gameObject.CompareTag("Obstacle") || other.gameObject.CompareTag("Enemy"))
+        {
+            GameManager.Instance.GameOver();
         }
     }
 }
