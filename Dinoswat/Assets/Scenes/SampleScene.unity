@@ -764,7 +764,7 @@ Animation:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1643529631}
-  m_Enabled: 1
+  m_Enabled: 0
   serializedVersion: 4
   m_Animation: {fileID: 7400000, guid: 3274b53fd4d08eb4a8ad85836a4c66a7, type: 2}
   m_Animations: []
@@ -807,8 +807,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5ba03a2d42dd337498840a7e55b3878f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: '::'
-  duckingSize: {x: 0, y: 0}
-  duckingOffset: {x: 0, y: 0}
+  duckingSize: {x: 1, y: 1.306063}
+  duckingOffset: {x: 0, y: 0.579204}
 --- !u!1 &2070997481
 GameObject:
   m_ObjectHideFlags: 0
