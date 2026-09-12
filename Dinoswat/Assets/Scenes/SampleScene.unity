@@ -663,7 +663,7 @@ Rigidbody2D:
   m_Interpolate: 0
   m_SleepingMode: 1
   m_CollisionDetection: 0
-  m_Constraints: 0
+  m_Constraints: 4
 --- !u!212 &1643529634
 SpriteRenderer:
   serializedVersion: 2
@@ -751,7 +751,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 661f7f043d8ca0f4c9f34326a3a85f09, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::PlayerJump
-  jump: 5
+  jump: 9
   groundLayer:
     serializedVersion: 2
     m_Bits: 8
@@ -809,6 +809,57 @@ MonoBehaviour:
   m_EditorClassIdentifier: '::'
   duckingSize: {x: 1, y: 1.306063}
   duckingOffset: {x: 0, y: 0.579204}
+--- !u!1 &2020796623
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 2020796624}
+  - component: {fileID: 2020796625}
+  m_Layer: 0
+  m_Name: Spawner
+  m_TagString: Untagged
+  m_Icon: {fileID: 7174288486110832750, guid: 0000000000000000d000000000000000, type: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &2020796624
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2020796623}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 10.53, y: -1.44, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &2020796625
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2020796623}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 33acb150c31ac4b44a37d40b024a6662, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: '::'
+  obstaclePrefabs:
+  - {fileID: 555975435122880295, guid: b56296ebd17faae469a52e668b99adb2, type: 3}
+  - {fileID: 8377104935352499407, guid: 27c195fd225dca048b3f88c90c5e74d9, type: 3}
+  - {fileID: 8339466329292511115, guid: bf5b6e7a622b6de4caad4d93eecfa84c, type: 3}
+  - {fileID: 1733970741208169343, guid: 9185c369ae682414593d4aa474076c59, type: 3}
+  obstacleSpawnTime: 5
+  obstacleSpeed: 8
 --- !u!1 &2070997481
 GameObject:
   m_ObjectHideFlags: 0
@@ -957,3 +1008,4 @@ SceneRoots:
   - {fileID: 1643529635}
   - {fileID: 122322531}
   - {fileID: 2070997484}
+  - {fileID: 2020796624}
