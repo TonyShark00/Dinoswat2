@@ -3,7 +3,7 @@ using UnityEngine.InputSystem;
 
 public class PlayerDuck : MonoBehaviour
 {
-    private CapsuleCollider2D col;
+    private BoxCollider2D col;
     private Animator anim;
 
     private Vector2 standingSize;
@@ -16,7 +16,7 @@ public class PlayerDuck : MonoBehaviour
 
     void Start()
     {
-        col = GetComponent<CapsuleCollider2D>();
+        col = GetComponent<BoxCollider2D>();
         anim = GetComponent<Animator>();
 
         standingSize = col.size;

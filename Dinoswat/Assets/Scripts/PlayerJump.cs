@@ -8,25 +8,28 @@ public class PlayerJump : MonoBehaviour
 {
     private Rigidbody2D rb;
     public float jump;
+    private Animator anim;
     public LayerMask groundLayer;
     public Transform groundCheck;
     public float groundCheckRadius = 0.2f;
 
     private bool isGrounded;
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
+
     void Start()
     {
         rb = GetComponent<Rigidbody2D>();
+        anim = GetComponent<Animator>();
     }
 
-    // Update is called once per frame
     void Update()
     {
-        isGrounded = Physics2D.OverlapCircle(groundCheck.position, groundCheckRadius, groundLayer);
+        isGrounded = Physics2D.OverlapCircle(groundCheck.position, groundCheckRadius, groundLayer); //checks if dino is touching ground
+
+        anim.SetBool("isJumping", !isGrounded);
 
         if (Keyboard.current.spaceKey.wasPressedThisFrame && isGrounded)
         {
-            rb.linearVelocity = new Vector2(rb.linearVelocity.x, jump);
+            rb.linearVelocity = new Vector2(rb.linearVelocity.x, jump); // horizontal speed, speed of jump
         }
     }
 }
