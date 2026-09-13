@@ -26,6 +26,6 @@ public class EnemyBullet : MonoBehaviour
         if (other.CompareTag("Ground"))
         {
             Destroy(gameObject);
+        }
     }
-}
 }

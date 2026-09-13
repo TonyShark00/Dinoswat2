@@ -2173,7 +2173,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 98924a1699ea5c64a867e1776f01fadd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: '::'
-  ChompHitbox: {fileID: 0}
+  ChompHitbox: {fileID: 575730195}
   hitboxActiveTime: 0.2
   rb: {fileID: 1643529633}
   jumpChompForce: 8
@@ -2234,7 +2234,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: '::'
   rockPrefab: {fileID: 919895054067546601, guid: 82519a0cce18b7e4c9a14f0b7a1ca23b, type: 3}
   launchPoint: {fileID: 89041134}
-  killsRequired: 1
+  killsRequired: 10
   IndicatorRenderer: {fileID: 834271904}
   IndicatorSprites:
   - {fileID: 1514291379, guid: 726ba4fb181706f4b807b4fe092206be, type: 3}

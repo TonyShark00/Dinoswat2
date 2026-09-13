@@ -20,7 +20,7 @@ public class PlayerHealth : MonoBehaviour
 
     public void TakeDamage(int amount)
     {
-        Debug.Log("TakeDamage called, amount: " + amount + " current health before: " + currentHealth);
+        Debug.Log("TakeDamage called, amount: " + amount + " current health before: " + currentHealth + " isInvincible: " + isInvincible);
         if (isInvincible) return;
 
         currentHealth -= amount;
@@ -40,16 +40,17 @@ public class PlayerHealth : MonoBehaviour
     void UpdateHealthBar()
     {
         Debug.Log("Updating health bar, health: " + currentHealth);
-        healthBarRenderer.sprite = healthSprites[currentHealth];    //give sprite based on health number
+        healthBarRenderer.sprite = healthSprites[currentHealth];
     }
 
-    private System.Collections.IEnumerator InvincibilityFlash() //flicker for recovery
+    private System.Collections.IEnumerator InvincibilityFlash()
     {
+        Debug.Log("Invincibility flash STARTED");
         isInvincible = true;
         SpriteRenderer dinoRenderer = GetComponent<SpriteRenderer>();
 
         float elapsed = 0f;
-        while (elapsed < invincibilityDuration) //flicker
+        while (elapsed < invincibilityDuration)
         {
             dinoRenderer.enabled = !dinoRenderer.enabled;
             yield return new WaitForSeconds(0.1f);
@@ -58,5 +59,6 @@ public class PlayerHealth : MonoBehaviour
 
         dinoRenderer.enabled = true;
         isInvincible = false;
+        Debug.Log("Invincibility flash ENDED, isInvincible now: " + isInvincible);
     }
 }
