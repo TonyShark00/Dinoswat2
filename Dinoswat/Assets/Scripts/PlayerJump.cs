@@ -23,6 +23,10 @@ public class PlayerJump : MonoBehaviour
 
     void Update()
     {
+        isGrounded = Physics2D.OverlapCircle(groundCheck.position, groundCheckRadius, groundLayer);
+        Debug.Log("isGrounded: " + isGrounded);
+
+        anim.SetBool("isJumping", !isGrounded);
         isGrounded = Physics2D.OverlapCircle(groundCheck.position, groundCheckRadius, groundLayer); //checks if dino is touching ground
 
         anim.SetBool("isJumping", !isGrounded);

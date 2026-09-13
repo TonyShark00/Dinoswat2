@@ -19,14 +19,13 @@ public class EnemyBullet : MonoBehaviour
     {
         if (other.CompareTag("Player"))
         {
-            GameManager.Instance.GameOver();
+            other.GetComponent<PlayerHealth>().TakeDamage(1);
             Destroy(gameObject);
         }
 
-        // also destroy if it hits the ground/obstacles so it doesn't fly forever
         if (other.CompareTag("Ground"))
         {
             Destroy(gameObject);
-        }
     }
+}
 }
