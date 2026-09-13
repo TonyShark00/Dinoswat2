@@ -6,7 +6,6 @@ public class EnemyShooter : MonoBehaviour
     public Transform firePoint;
     public float fireInterval = 2f;
     public float destroyX = -15f;
-    public float shootingRange = 8f; // only shoot within this distance
 
     private Transform target;
     private float timer;
@@ -14,7 +13,8 @@ public class EnemyShooter : MonoBehaviour
     void Start()
     {
         target = GameObject.FindGameObjectWithTag("Player").transform;
-        timer = fireInterval; // ready to shoot as soon as in range
+        Shoot();
+        timer = 0f;
     }
 
     void Update()
@@ -27,13 +27,7 @@ public class EnemyShooter : MonoBehaviour
 
         if (transform.position.x < target.position.x)
         {
-            return; // already passed the dino, stop shooting
-        }
-
-        float distance = transform.position.x - target.position.x;
-        if (distance > shootingRange)
-        {
-            return; // too far away, angle would look bad
+            return;
         }
 
         timer += Time.deltaTime;
@@ -49,6 +43,13 @@ public class EnemyShooter : MonoBehaviour
     {
         GameObject bullet = Instantiate(bulletPrefab, firePoint.position, Quaternion.identity);
         Vector2 dir = (target.position - firePoint.position);
+
+        float minVertical = 1.5f;
+        if (Mathf.Abs(dir.y) < minVertical)
+        {
+            dir.y = dir.y >= 0 ? minVertical : -minVertical;
+        }
+
         bullet.GetComponent<EnemyBullet>().SetDirection(dir);
     }
 }
