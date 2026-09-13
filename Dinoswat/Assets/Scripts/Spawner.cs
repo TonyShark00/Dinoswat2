@@ -2,12 +2,12 @@ using UnityEngine;
 
 public class Spawner : MonoBehaviour
 {
-    [SerializeField] private GameObject[] obstaclePrefabs;
+    [SerializeField] private GameObject[] obstaclePrefabs; //array holding all obstacles and enemies
     public float obstacleSpawnTime = 2f;
     public float obstacleSpeed = 1f;
 
     private float timeUntilObstacleSpawn;
-    private GameObject lastSpawned;
+    private GameObject lastSpawned; //checks prev spawn to avoid repeation
 
     private void Update()
     {
@@ -32,7 +32,7 @@ public class Spawner : MonoBehaviour
 
         do
         {
-            obstacleToSpawn = obstaclePrefabs[Random.Range(0, obstaclePrefabs.Length)];
+            obstacleToSpawn = obstaclePrefabs[Random.Range(0, obstaclePrefabs.Length)]; //picks random obstacle
             attempts++;
         }
         while (obstacleToSpawn == lastSpawned && attempts < 10 && obstaclePrefabs.Length > 1);

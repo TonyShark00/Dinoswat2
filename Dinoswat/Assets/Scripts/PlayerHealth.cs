@@ -40,16 +40,16 @@ public class PlayerHealth : MonoBehaviour
     void UpdateHealthBar()
     {
         Debug.Log("Updating health bar, health: " + currentHealth);
-        healthBarRenderer.sprite = healthSprites[currentHealth];
+        healthBarRenderer.sprite = healthSprites[currentHealth];    //give sprite based on health number
     }
 
-    private System.Collections.IEnumerator InvincibilityFlash()
+    private System.Collections.IEnumerator InvincibilityFlash() //flicker for recovery
     {
         isInvincible = true;
         SpriteRenderer dinoRenderer = GetComponent<SpriteRenderer>();
 
         float elapsed = 0f;
-        while (elapsed < invincibilityDuration)
+        while (elapsed < invincibilityDuration) //flicker
         {
             dinoRenderer.enabled = !dinoRenderer.enabled;
             yield return new WaitForSeconds(0.1f);

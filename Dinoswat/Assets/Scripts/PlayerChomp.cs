@@ -3,7 +3,7 @@ using UnityEngine.InputSystem;
 
 public class PlayerChomp : MonoBehaviour
 {
-    public GameObject chompHitbox;
+    public GameObject ChompHitbox;
     public float hitboxActiveTime = 0.2f;
 
     public Rigidbody2D rb;
@@ -14,7 +14,7 @@ public class PlayerChomp : MonoBehaviour
     void Start()
     {
         anim = GetComponent<Animator>();
-        chompHitbox.SetActive(false);
+        ChompHitbox.SetActive(false);
     }
 
     void Update()
@@ -49,8 +49,8 @@ public class PlayerChomp : MonoBehaviour
 
     private System.Collections.IEnumerator ActivateHitbox()
     {
-        chompHitbox.SetActive(true);
+        ChompHitbox.SetActive(true);
         yield return new WaitForSeconds(hitboxActiveTime);
-        chompHitbox.SetActive(false);
+        ChompHitbox.SetActive(false);
     }
 }

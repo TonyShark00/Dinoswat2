@@ -1,8 +1,5 @@
 using UnityEngine;
-using System.Collections.Generic;
-using System.Collections;
 using UnityEngine.InputSystem;
-
 
 public class PlayerJump : MonoBehaviour
 {
@@ -24,16 +21,11 @@ public class PlayerJump : MonoBehaviour
     void Update()
     {
         isGrounded = Physics2D.OverlapCircle(groundCheck.position, groundCheckRadius, groundLayer);
-        Debug.Log("isGrounded: " + isGrounded);
-
-        anim.SetBool("isJumping", !isGrounded);
-        isGrounded = Physics2D.OverlapCircle(groundCheck.position, groundCheckRadius, groundLayer); //checks if dino is touching ground
-
         anim.SetBool("isJumping", !isGrounded);
 
         if (Keyboard.current.spaceKey.wasPressedThisFrame && isGrounded)
         {
-            rb.linearVelocity = new Vector2(rb.linearVelocity.x, jump); // horizontal speed, speed of jump
+            rb.linearVelocity = new Vector2(rb.linearVelocity.x, jump);
         }
     }
 }

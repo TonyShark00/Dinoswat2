@@ -22,8 +22,8 @@ public class PlayerRockLaunch : MonoBehaviour
     {
         bool shiftHeld = Keyboard.current.leftShiftKey.isPressed || Keyboard.current.rightShiftKey.isPressed;
 
-        int killsSinceLastLaunch = GameManager.Instance.killCount - killsAtLastLaunch;
-        bool canLaunch = killsSinceLastLaunch >= killsRequired;
+        int killsSinceLastLaunch = GameManager.Instance.killCount - killsAtLastLaunch; //gets number of new kills
+        bool canLaunch = killsSinceLastLaunch >= killsRequired; //no. of kills since last time
 
         IndicatorRenderer.sprite = canLaunch ? IndicatorSprites[0] : IndicatorSprites[1];
 
