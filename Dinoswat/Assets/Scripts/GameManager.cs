@@ -9,6 +9,7 @@ public class GameManager : MonoBehaviour
     public int killCount = 0; // counts kills
     public TextMeshProUGUI killCountText; //displays kills
     public GameObject gameOverPanel; // reload button
+    public float scrollSpeed = 5f;
 
     void Awake()
     {
