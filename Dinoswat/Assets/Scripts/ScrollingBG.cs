@@ -3,11 +3,12 @@ using UnityEngine;
 public class ScrollingBG : MonoBehaviour
 {
     [SerializeField]
-    private Renderer bgRenderer;
+    private Renderer bgRenderer; //ref to bg material used
 
-    // Update is called once per frame
+    public float speedMultiplier = 1f; // tune this until it visually matches obstacle speed
+
     void Update()
     {
-        bgRenderer.material.mainTextureOffset += new Vector2(GameManager.Instance.scrollSpeed * Time.deltaTime, 0);
+        bgRenderer.material.mainTextureOffset += new Vector2(GameManager.Instance.scrollSpeed * speedMultiplier * Time.deltaTime, 0);
     }
 }

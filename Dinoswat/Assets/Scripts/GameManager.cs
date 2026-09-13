@@ -6,39 +6,68 @@ public class GameManager : MonoBehaviour
 {
     public static GameManager Instance;
 
-    public int killCount = 0; // counts kills
-    public TextMeshProUGUI killCountText; //displays kills
-    public GameObject gameOverPanel; // reload button
+    public int killCount = 0;
+    public TextMeshProUGUI killCountText;
+    public TextMeshProUGUI highScoreText; // drag a UI text for high score here
+    public GameObject gameOverPanel;
     public float scrollSpeed = 5f;
+
+    private int highScore;
+
+    public float speedIncreaseRate = 0.1f; // how much speed increases per second
+    public float maxScrollSpeed = 15f;     // cap so it doesn't go insane
+
+    void Update()
+    {
+        if (scrollSpeed < maxScrollSpeed)
+        {
+            scrollSpeed += speedIncreaseRate * Time.deltaTime;
+        }
+    }
 
     void Awake()
     {
         Instance = this;
     }
 
-    public void AddKill()
+    void Start()
+    {
+        highScore = PlayerPrefs.GetInt("HighScore", 0); // displays prev highscore, 0 if none
+        UpdateHighScoreUI();
+    }
+
+    public void AddKill()   //counts kills
     {
         killCount++;
         UpdateUI();
     }
 
-    void UpdateUI()
+    void UpdateUI() //displays kill count
     {
         killCountText.text = " " + killCount;
     }
 
-    public void GameOver()
+    void UpdateHighScoreUI()    //displays highscore
     {
-        Debug.Log("GameOver() called!");
-        Time.timeScale = 0f;
-        gameOverPanel.SetActive(true);
-        Time.timeScale = 0f; // freezes everything driven by Time.deltaTime
-        gameOverPanel.SetActive(true);
+        highScoreText.text = " " + highScore;
     }
 
-    public void RestartGame()
+    public void GameOver()
     {
-        Time.timeScale = 1f; // unfreeze before reloading
-        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex); //refreshes scene
+        Time.timeScale = 0f;
+        gameOverPanel.SetActive(true);  //displays reload sign
+
+        if (killCount > highScore)  //checks if current score beats high score
+        {
+            highScore = killCount;
+            PlayerPrefs.SetInt("HighScore", highScore);
+            PlayerPrefs.Save();
+        }
+    }
+
+    public void RestartGame()   //restarts game
+    {
+        Time.timeScale = 1f;
+        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
     }
 }

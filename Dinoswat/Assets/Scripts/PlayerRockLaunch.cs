@@ -4,10 +4,14 @@ using UnityEngine.InputSystem;
 public class PlayerRockLaunch : MonoBehaviour
 {
     public GameObject rockPrefab;
-    public Transform launchPoint; // empty child in front of the dino
+    public Transform launchPoint;
     public int killsRequired = 10;
 
+    public SpriteRenderer IndicatorRenderer;
+    public Sprite[] IndicatorSprites;
+
     private Animator anim;
+    private int killsAtLastLaunch = 0; // tracks kill count baseline
 
     void Start()
     {
@@ -18,7 +22,12 @@ public class PlayerRockLaunch : MonoBehaviour
     {
         bool shiftHeld = Keyboard.current.leftShiftKey.isPressed || Keyboard.current.rightShiftKey.isPressed;
 
-        if (shiftHeld && Keyboard.current.dKey.wasPressedThisFrame && GameManager.Instance.killCount >= killsRequired)
+        int killsSinceLastLaunch = GameManager.Instance.killCount - killsAtLastLaunch;
+        bool canLaunch = killsSinceLastLaunch >= killsRequired;
+
+        IndicatorRenderer.sprite = canLaunch ? IndicatorSprites[0] : IndicatorSprites[1];
+
+        if (shiftHeld && Keyboard.current.dKey.wasPressedThisFrame && canLaunch)
         {
             LaunchRock();
         }
@@ -26,6 +35,7 @@ public class PlayerRockLaunch : MonoBehaviour
 
     void LaunchRock()
     {
+        killsAtLastLaunch = GameManager.Instance.killCount; // reset the baseline, "spending" the kills
         anim.SetTrigger("rockLaunch");
         Instantiate(rockPrefab, launchPoint.position, Quaternion.identity);
     }
